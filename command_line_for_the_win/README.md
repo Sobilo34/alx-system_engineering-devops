@@ -1,6 +1,8 @@
-# Command_line_for_the_win
-## Test/Challange on using Command line Interface
+## Command_line_for_the_win
 
+**Test/Challange on using Command line Interface**
+
+![Cmd challenge](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-sysadmin_devops/324/06AChAO.png)
 
 SFTP command used:
 1. Logged in sftp with this command : stfp username@hostname
