@@ -2,6 +2,7 @@
 
 **Test/Challange on using Command line Interface**
 
+![Cmd challenge](https://i.ytimg.com/vi/r1qm2fz-bjs/maxresdefault.jpg)
 
 SFTP command used:
 1. Logged in sftp with this command : stfp username@hostname
