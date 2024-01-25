@@ -8,7 +8,7 @@ do
 	
 	b=1
 	while (( b<60 ))
-do
+	do
 		echo "$b"
 		((b++))
 	done
