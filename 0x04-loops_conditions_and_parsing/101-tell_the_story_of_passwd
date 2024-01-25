@@ -2,7 +2,8 @@
 # This script displays the content of the current directory in list format
 
 my_file="/etc/passwd"
-while IFS= read -r line
+
+while IFS= read -r content
 do
-    echo "$line" | cut -d":" -f1,3,6
+    echo "$content" | cut -d":" -f1,3,6
 done < "$my_file"
