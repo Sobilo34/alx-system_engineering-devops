@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# This script displays the content of the current directory in list format
+
+# This script tells a story about each user in /etc/passwd
 
 my_file="/etc/passwd"
 
-while IFS= read -r content
+while IFS=: read -r user passwd uid gid desc home shell
 do
-    echo "$content" | cut -d":" -f1,3,6
+    echo "The user $user is part of the $gid gang, lives in $home and rides $shell. $uid's place is protected by the passcode $passwd, more info about the user here: $desc"
 done < "$my_file"
