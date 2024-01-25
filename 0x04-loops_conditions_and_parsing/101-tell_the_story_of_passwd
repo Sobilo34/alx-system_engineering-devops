@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-
 # This script tells a story about each user in /etc/passwd
+
 
 my_file="/etc/passwd"
 
