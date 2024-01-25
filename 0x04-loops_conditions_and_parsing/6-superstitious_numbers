@@ -3,7 +3,7 @@
 
 loop=1
 
-while (( loop<=20 ))
+while [ $loop -le 20 ]
 do
 	echo "$loop"
 	case $loop in
