@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 # This script displays the content of the current directory in list format
 
-for file in *; do
-  if [[ ! $file == .* && -f $file ]]; then
-    name=$(echo "$file" | cut -d'-' -f2-)
-    echo "$name"
-  fi
-done
+my_file="/etc/passwd"
+while IFS= read -r content
+do
+    echo "$content" | cut -d":" -f1,3,6
+done < "$my_file"
