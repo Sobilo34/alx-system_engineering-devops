@@ -6,7 +6,7 @@ loop=1
 while (( loop<=20 ))
 do
 	echo "$loop"
-	case $i in
+	case $loop in
 	"4") echo "bad luck from China";;
 	"9") echo "bad luck from Japan";;
 	"17") echo "bad luck from Italy";;
