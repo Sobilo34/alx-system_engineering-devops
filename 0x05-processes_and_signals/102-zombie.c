@@ -1,44 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
 #include <unistd.h>
-#include <sys/wait.h>
-
 int infinite_while(void);
 
 /**
- * main - This is a function that create 5 zombie processes
- * Return: return 0
+ * main - A C program that creates 5 zombie processes
+ * Return: It returns 0
  */
+
 int main(void)
 {
+	pid_t child_pid;
 	int i;
-	pid_t prs_id, wait_pid;
 
 	for (i = 0; i < 5; i++)
 	{
-		prs_id = fork();
-		if (prs_id == -1)
+		child_pid = fork();
+
+		if (child_pid > 0)
 		{
-			perror("fork");
-			exit(1);
-		}
-		else if (prs_id == 0)
-		{
-			printf("Zombie process created, PID: %d\n", getpid());
+			printf("Zombie process created, PID: %d\n", child_pid);
 			sleep(1);
-			exit(0);
 		}
 		else
 		{
-			wait_pid = wait(NULL);
-			if (wait_pid == -1)
-			{
-				perror("wait");
-				exit(1);
-			}
+			exit(0);
 		}
 	}
+
 	infinite_while();
+
 	return (0);
 }
 
