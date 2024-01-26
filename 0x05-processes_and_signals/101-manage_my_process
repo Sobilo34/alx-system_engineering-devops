@@ -1,47 +1,35 @@
 #!/usr/bin/env bash
-# This is a basj script to manage my process
+# A Bash script manages my processes
 
-SCRIPT_PATH=$(dirname "$(readlink -f "$0")")
-PID_FILE="/var/run/my_process.pid"
 
-start_process() {
-    if [ -f "$PID_FILE" ]; then
-        echo "manage_my_process is already running."
+if [ $# -gt 0 ]
+then
+    if [ "$1" == "start" ]
+    then
+	./manage_my_process &
+	touch /var/run/my_process.pid
+
+	echo "$!" > /var/run/my_process.pid
+	echo "manage_my_process started"
+    elif [ "$1" == "stop" ]
+    then
+
+	echo "manage_my_process stopped"
+	kill "$(cat /var/run/my_process.pid)"
+	rm -f /var/run/my_process.pid
+    elif [ "$1" == "restart" ]
+    then
+
+	kill "$(cat /var/run/my_process.pid)"
+	rm -f /var/run/my_process.pid
+	./manage_my_process &
+
+	touch /var/run/my_process.pid
+	echo "$!" > /var/run/my_process.pid
+	echo "manage_my_process restarted"
     else
-        "$SCRIPT_PATH/manage_my_process" &
-        echo $! >"$PID_FILE"
-        echo "manage_my_process started"
+	echo "Usage: manage_my_process {start|stop|restart}"
     fi
-}
-
-stop_process() {
-    if [ -f "$PID_FILE" ]; then
-        PID=$(cat "$PID_FILE")
-        kill "$PID" && wait "$PID" 2>/dev/null
-        rm "$PID_FILE"
-        echo "manage_my_process stopped"
-    else
-        echo "manage_my_process is not running."
-    fi
-}
-
-restart_process() {
-    stop_process
-    start_process
-    echo "manage_my_process restarted"
-}
-
-case $1 in
-start)
-    start_process
-    ;;
-stop)
-    stop_process
-    ;;
-restart)
-    restart_process
-    ;;
-*)
-    echo "Usage: $0 {start|stop|restart}"
-    ;;
-esac
+else
+    echo "Usage: manage_my_process {start|stop|restart}"
+fi
