@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# This is a basj script to manage my process
+
+SCRIPT_PATH=$(dirname "$(readlink -f "$0")")
+PID_FILE="/var/run/my_process.pid"
+
+start_process() {
+    if [ -f "$PID_FILE" ]; then
+        echo "manage_my_process is already running."
+    else
+        "$SCRIPT_PATH/manage_my_process" &
+        echo $! >"$PID_FILE"
+        echo "manage_my_process started"
+    fi
+}
+
+stop_process() {
+    if [ -f "$PID_FILE" ]; then
+        PID=$(cat "$PID_FILE")
+        kill "$PID" && wait "$PID" 2>/dev/null
+        rm "$PID_FILE"
+        echo "manage_my_process stopped"
+    else
+        echo "manage_my_process is not running."
+    fi
+}
+
+restart_process() {
+    stop_process
+    start_process
+    echo "manage_my_process restarted"
+}
+
+case $1 in
+start)
+    start_process
+    ;;
+stop)
+    stop_process
+    ;;
+restart)
+    restart_process
+    ;;
+*)
+    echo "Usage: $0 {start|stop|restart}"
+    ;;
+esac
