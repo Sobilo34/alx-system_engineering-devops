@@ -5,7 +5,7 @@ What Distributuion Algorithm the Load Balancer is configured with?
 The load-balancer is configured with HAProxy of Round Robin algorithm for distribution. The Round Robin algorithm distributes queries to servers in a sequential manner. After reaching the last server, it loops back to the first one. As a result, each server handles approximately 50% of the load in a two-server configuration.
 
 Is your load-balancer enabling an Active-Active or Active-Passive setup? Explain the both:
-Our Load Balancer is enabling Active-passive set-up and not Active-Active, therefore, all nodes are going to be active simultaneously. Active-Active is the type of set up that distributes workloads across multiple nodes for load balancing,
+Our Load Balancer is enabling Active-passive set-up and not Active-Active, therefore, when one node is active the other is inactive. Active-Active is the type of set up that distributes workloads across multiple nodes for load balancing,
 while Active-Passive will ensures service continuity with a standby node ready for failover.
 
 How a database Primary-Replica (Master-Slave) cluster works?
@@ -15,6 +15,6 @@ What is the difference between the Primary node and the Replica node in regard t
 Primary Node: Handles write operations, data consistency, and serves as the main data handler.
 Replica Node: Manages read queries, provides redundancy, and acts as a backup in case of primary node failure.
 
-Where are SPOF: There is no SPOF
+Where are SPOF: If the database or any component in either of the server fails then no meaningful response is given to the client.
 Security issues (no firewall, no HTTPS): The HTTP(the network) is not encrypted and doest not have SSH certificate. Therfore, hackers can access sensitive information, including personal data, login credentials, or financial details of users stored on the website.
 No monitoring: This webiste is unable to use the collected data to draw conclusions about and condition of the server since it is not monitored.
