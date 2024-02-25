@@ -4,7 +4,6 @@ In this Secured Web Infrastructure, we are meant to add Firewalls, SSH certifica
 What are firewalls for:
 Firewall are services that protects Web server and network against unauthorized access, viruses, and hackers by monitoring network traffic.
 
-
 Why is the traffic served over HTTPS
 The traffic is served in order to bring protection by using the secure port 443, which encrypts outgoing information in HTTP(Hypertext Transfer Protocol Secure). Then it is more difficult get illegal access to the Web server.
 
