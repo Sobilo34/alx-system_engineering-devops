@@ -1,0 +1,33 @@
+## 0-simple_web_stack
+
+What is a server?
+A server is a computer or system that provides resources, data, services, or programs to other computers, known as clients, over a network.
+
+What is the role of the domain name?
+According to Wikipedia "Domain names serve to identify Internet resources, such as computers, networks, and services, with a text-based label that is easier to memorize than the numerical addresses used in the Internet protocols."
+
+What type of DNS record www is in www.foobar.com?
+ www.foobar.com use A record. Address records, commonly known as host records, resolve IP addresses. They connect the domains you register to the correct IP address so that your website will properly resolve when someone types in your web address. A records are used when you want to connect a domain name you’ve registered with a hosted website. Usually, two A records are set up that will successfully point to both a bare and wildcard version of the domain (i.e. yoursite.com and http://yoursite.com). Additional A records can also be created for subdomains as well.
+
+ What is the role of the web server?
+ The primary role of a web server is to store, process, and deliver requested information or webpages to end users. It uses: Physical Storage: All website data is stored on a physical web server to ensure its safety.
+
+What is the role of the application server?
+ The function of the application server is to act as host (or container) for the user's business logic while facilitating access to and performance of the business application. According to IBM "An application server typically can deliver web content too, but its primary job is to enable interaction between end-user clients and server-side application code—the code representing what is often called business logic—to generate and deliver dynamic content, such as transaction results, decision support, or real-time analytics."
+
+What is the role of the database?
+The primary purpose of a database is to store, retrieve, and update information.
+
+What is the server using to communicate with the computer of the user requesting the website?
+Web browsers and servers communicate using TCP/IP. Hypertext Transfer Protocol is the standard application protocol on top of TCP/IP supporting web browser requests and server responses. The primary role of a web server is to store, process, and deliver requested information or webpages to end users.
+
+Issues are with this infrastructures:
+
+1. SPOF
+There are multiple SPOF (Single Point Of Failure) in this infrastructure. If the database is down the entire system goes down.
+
+2. Downtime when maintenance needed (like deploying new code web server needs to be restarted)
+Since we have only one server when maintenance is needed the server would have to be shutdown, therefore the site would be on downtime.
+
+3. Cannot scale if too much incoming traffic.
+Our server has limited resources and cannot handle high traffic, therefore when traffic is high the site begins to slow down in response to clients requests, and we cannot easily scale up by adding another server since all our resource is contain in the run server (i.e we do not have duplicate copies of resources needed to run another server).
