@@ -20,8 +20,6 @@ Interpretation: Here, collected data becomes meaningful metrics presented throug
 Explain what to do if you want to monitor your web server QPS?
 To monitor your web server’s Queries Per Second (QPS), perform a performance test with a single server to determine its supported rate and consider adding a load balancer for distribution1.
 
-You must be able to explain what the issues are with this infrastructure:
-
 Why terminating SSL at the load balancer level is an issue:
 Terminating SSL at the load balancer level can leave the communication between the load balancer and app servers unencrypted, potentially exposing them to packet sniffing or ARP poisoning1
 
