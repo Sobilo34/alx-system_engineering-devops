@@ -1,11 +1,20 @@
 Reasons for AddingAdditional Elements Elements
+The requirement for this question is to have Two servers unlike the forst question whivh has one server, hence we need to add a load balancer to the simple web infrastructure in the previous question. The load balancer(represented by HAProxy) will distributes the incoming traffic among multiple servers with a Robin-Round algorithm.  This allowsthe Web infrastructure to work optimally 
 
+What Distributuion Algorithm the Load Balancer is configured with?
+The load-balancer is configured with HAProxy of Round Robin algorithm for distribution. The Round Robin algorithm distributes queries to servers in a sequential manner. After reaching the last server, it loops back to the first one. As a result, each server handles approximately 50% of the load in a two-server configuration.
 
-What distribution algorithm your load balancer is configured with and how it works
-Is your load-balancer enabling an Active-Active or Active-Passive setup, explain the difference between both
-How a database Primary-Replica (Master-Slave) cluster works
-What is the difference between the Primary node and the Replica node in regard to the application
-You must be able to explain what the issues are with this infrastructure:
+Is your load-balancer enabling an Active-Active or Active-Passive setup? Explain the both:
+Our Load Balancer is enabling Active-passive set-up and not Active-Active, therefore, all nodes are going to be active simultaneously. Active-Active is the type of set up that distributes workloads across multiple nodes for load balancing,
+while Active-Passive will ensures service continuity with a standby node ready for failover.
+
+How a database Primary-Replica (Master-Slave) cluster works?
+For this setup, data from a master database server is replicated to one or more replica (slave) database servers. It can be use to distribute workload among multiple replicas to improve performance. It is used to run backup services on the slave without affecting master data. It is also used to analyze data on the slave without impacting master performance and can alos be used to create local copies of data for branch offices without permanent access to the master
+
+What is the difference between the Primary node and the Replica node in regard to the application:
+Primary Node: Handles write operations, data consistency, and serves as the main data handler.
+Replica Node: Manages read queries, provides redundancy, and acts as a backup in case of primary node failure.
+
 Where are SPOF
 Security issues (no firewall, no HTTPS)
 No monitoring
