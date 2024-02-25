@@ -1,9 +1,9 @@
 Reason for adding more features/elements:
 In this Secured Web Infrastructure, we are meant to add Firewalls, SSH certificate and Monitoring Clients. This will protect the web server from unathorized access, getting access to critical informationby a third-party and improve good analyzation of data for optimal user outcome.
 What are firewalls for:
-Firewall arhe things that protects Web server and network against unauthorized access, viruses, and hackers by monitoring network traffic.
+Firewall are things that protects Web server and network against unauthorized access, viruses, and hackers by monitoring network traffic.
 SSH Certificates: Enhance security by providing identity-based authentication and automatic expiration.
-Monitoring Clients: Streamline operations, improve communication, and analyze data for better client outcomes. 🔥🔑🔍
+Monitoring Clients: Streamline operations, improve communication, and analyze data for better client outcomes
 Why is the traffic served over HTTPS
 What monitoring is used for
 How the monitoring tool is collecting data
