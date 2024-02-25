@@ -1,14 +1,32 @@
 Reason for adding more features/elements:
 In this Secured Web Infrastructure, we are meant to add Firewalls, SSH certificate and Monitoring Clients. This will protect the web server from unathorized access, getting access to critical informationby a third-party and improve good analyzation of data for optimal user outcome.
+
 What are firewalls for:
-Firewall are things that protects Web server and network against unauthorized access, viruses, and hackers by monitoring network traffic.
-SSH Certificates: Enhance security by providing identity-based authentication and automatic expiration.
-Monitoring Clients: Streamline operations, improve communication, and analyze data for better client outcomes
+Firewall are services that protects Web server and network against unauthorized access, viruses, and hackers by monitoring network traffic.
+
+
 Why is the traffic served over HTTPS
-What monitoring is used for
-How the monitoring tool is collecting data
-Explain what to do if you want to monitor your web server QPS
+The traffic is served in order to bring protection by using the secure port 443, which encrypts outgoing information in HTTP(Hypertext Transfer Protocol Secure). Then it is more difficult get illegal access to the Web server.
+
+What monitoring is used for:
+Monitoring is expected to Streamline operations, improve communication, and analyze data for better client outcomes
+
+How the monitoring tool is collecting data:
+The monitory tool collects data with three steps, they are:
+Foundation: This layer deals with the basic infrastructure, including physical and virtual devices like servers and CPUs.
+Software: It analyzes what’s happening in these devices—CPU usage, memory, and more.
+Interpretation: Here, collected data becomes meaningful metrics presented through graphs or dashboards. It helps us understand performance better.
+
+Explain what to do if you want to monitor your web server QPS?
+To monitor your web server’s Queries Per Second (QPS), perform a performance test with a single server to determine its supported rate and consider adding a load balancer for distribution1.
+
 You must be able to explain what the issues are with this infrastructure:
-Why terminating SSL at the load balancer level is an issue
-Why having only one MySQL server capable of accepting writes is an issue
+
+Why terminating SSL at the load balancer level is an issue:
+Terminating SSL at the load balancer level can leave the communication between the load balancer and app servers unencrypted, potentially exposing them to packet sniffing or ARP poisoning1
+
+Why having only one MySQL server capable of accepting writes is an issue:
+Having only one MySQL server capable of accepting writes is problematic because it lacks redundancy, and in case of failure, there’s no backup to handle write requests, potentially leading to data loss or service disruption
+
 Why having servers with all the same components (database, web server and application server) might be a problem
+Having servers with identical components (database, web server, and application server) can be problematic because it lacks redundancy, and if one component fails, the entire system may become unavailable or experience data loss
