@@ -15,6 +15,6 @@ What is the difference between the Primary node and the Replica node in regard t
 Primary Node: Handles write operations, data consistency, and serves as the main data handler.
 Replica Node: Manages read queries, provides redundancy, and acts as a backup in case of primary node failure.
 
-Where are SPOF
-Security issues (no firewall, no HTTPS)
-No monitoring
+Where are SPOF: There is no SPOF
+Security issues (no firewall, no HTTPS): The HTTP(the network) is not encrypted and doest not have SSH certificate. Therfore, hackers can access sensitive information, including personal data, login credentials, or financial details of users stored on the website.
+No monitoring: This webiste is unable to use the collected data to draw conclusions about and condition of the server since it is not monitored.
