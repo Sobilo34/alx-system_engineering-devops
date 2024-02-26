@@ -1,0 +1,4 @@
+Reason for the features added:
+This is a Scale-up web infrastructure.
+A Scale up web infrastructure refers to the process of increasing the capacity and capabilities of a website or web-based application to handle more traffic and data.
+In this type of web infrastructure, we split different components of a web application into their own servers. This is a common practice in modern web developmentand it's an approach known as a “microservices” architecture which allows each component to be developed and scaled independently. This will improve the overall performance and reliability of the application.
