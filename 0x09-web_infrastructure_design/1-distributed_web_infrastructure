@@ -1,3 +1,5 @@
+Distributed Web Infrastructure
+
 Reasons for Adding more Elements
 The requirement for this question is to have Two servers unlike the forst question whivh has one server, hence we need to add a load balancer to the simple web infrastructure in the previous question. The load balancer(represented by HAProxy) will distributes the incoming traffic among multiple servers with a Robin-Round algorithm.  This allowsthe Web infrastructure to work optimally 
 
