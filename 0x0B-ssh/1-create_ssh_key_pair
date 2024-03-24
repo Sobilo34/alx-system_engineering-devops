@@ -5,5 +5,8 @@
 # Number of bits in the created key to be created 4096
 # The created key must be protected by the passphrase betty
 
+private_key="school"
+bits=4096
+passphrase="betty"
 
-ssh-keygen -t rsa -f school -b 4096 -N 'betty'
+ssh-keygen -b $bits -N $passphrase -f $private_key
