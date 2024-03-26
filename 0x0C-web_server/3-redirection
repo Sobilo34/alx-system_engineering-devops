@@ -1,10 +1,19 @@
 #!/usr/bin/env bash
-# Configures a new Ubuntu machine
 
-sudo apt -y update
-sudo apt -y install nginx
-#ufw allow 'Nginx HTTP'
+# Install Nginx
+sudo apt update
+sudo apt install -y nginx
+
+# Create index.html with "Hello World!"
 echo "Hello World!" | sudo tee /var/www/html/index.html
 
-sed -i 's/server_name _;/server_name _;\n\trewrite \/redirect_me https:\/\/www.youtube.com\/watch\?v=QH2-TGUlwu4 permanent;/' /etc/nginx/sites-enabled/default
-sudo service nginx restart
+# Configure Nginx for redirection
+sudo sed -i '33i\\tlocation /redirect_me {\n\t\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n\t}\n' /etc/nginx/sites-enabled/default
+
+# Check Nginx configuration syntax
+nginx -t
+
+# If configuration syntax is correct, restart Nginx
+if [ $? -eq 0 ]; then
+    sudo service nginx restart
+fi
