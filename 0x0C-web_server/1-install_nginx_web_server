@@ -11,4 +11,4 @@ sudo apt-get install -y nginx
 echo "Hello World!" > /var/www/html/index.html
 ufw allow 'Nginx HTTP'
 # Restart nginx (without using systemctl)
-sudo nginx -t && sudo service nginx restart
+sudo service nginx restart
