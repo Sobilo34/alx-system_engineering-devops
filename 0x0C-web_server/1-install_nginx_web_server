@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
-# Configures a new Ubuntu machine with nginx - 
-apt-get -y update && apt-get -y install nginx 
-mkdir -p /srv/www
-echo "Holberton School" | sudo tee /srv/www/index.html 
-rm -f /etc/nginx/sites-enabled/default 
-echo -e "server {\n\tlisten 80 default_server;\n\troot /srv/www;\n\tindex index.html index.htm;\n}" | sudo tee /etc/nginx/sites-available/www 
-ln -sf /etc/nginx/sites-available/www /etc/nginx/sites-enabled/ 
-sudo nginx -t && sudo service nginx restart
+# Bash script that configures a new Ubuntu machine
+# it Install nginx on on server web-01
+# When querying Nginx at its root / with a GET request (requesting a page) using curl, it must return a page that contains the string Hello World!
+# can’t use systemctl for restarting nginx
 
+
+sudo apt-get update
+# Updated package list and install nginx
+sudo apt-get install -y nginx
+echo "Hello World!" > /var/www/html/index.html
+ufw allow 'Nginx HTTP'
+# Restart nginx (without using systemctl)
+sudo nginx -t && sudo service nginx restart
