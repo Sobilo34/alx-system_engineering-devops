@@ -1,38 +1,28 @@
-# Configuring your server with Puppet
-# Nginx should be listening on port 80
+# Configuring your server with Puppet                                                      # Nginx should be listening on port 80
 
-include stdlib
 
+# File: init.pp
+
+# Install Nginx package
 package { 'nginx':
-  ensure  => installed,
+  ensure => installed,
 }
 
-exec { 'install nginx':
-  command  => 'sudo apt -y update && sudo apt -y install nginx',
-  provider => shell,
+# Ensure Nginx service is running and enabled
+service { 'nginx':
+  ensure => running,
+  enable => true,
 }
 
-file { '/etc/nginx/sites-available/default':
-  content => "server {
-		listen 80 default_server;
-		server_name _;
-		root /var/www/html;
-		location / {
-		index index.html;
-          	}
-		rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
-	}",
-  require => Exec['install nginx'],
-}
-
+# Create index.html with "Hello World!"
 file { '/var/www/html/index.html':
-  ensure  =>  'file',
-  content =>  'Hello World!',
-  require =>  Exec['install nginx'],
+  ensure  => file,
+  content => "Hello World!\n",
 }
 
-exec { 'run':
-  command  => 'sudo service nginx restart',
-  provider => shell,
-  #require  => File['/etc/nginx/sites-available/default'],
+# Configure Nginx for redirection
+file { '/etc/nginx/sites-available/default':
+  ensure  => file,
+  content => template('nginx/default.erb'),
+  notify  => Service['nginx'],
 }
