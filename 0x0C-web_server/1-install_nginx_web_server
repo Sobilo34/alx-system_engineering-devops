@@ -1,9 +1,21 @@
+
 #!/usr/bin/env bash
-# Configures a new Ubuntu machine with nginx - 
-apt-get -y update && apt-get -y install nginx 
-mkdir -p /srv/www
-echo "Holberton School" | sudo tee /srv/www/index.html 
-rm -f /etc/nginx/sites-enabled/default 
-echo -e "server {\n\tlisten 80 default_server;\n\troot /srv/www;\n\tindex index.html index.htm;\n}" | sudo tee /etc/nginx/sites-available/www 
-ln -sf /etc/nginx/sites-available/www /etc/nginx/sites-enabled/ 
-sudo nginx -t && sudo service nginx restart
+# Install nginx on web-01 server
+# Nginx to listen on port 80
+
+# Variables
+nginx_web_root="/usr/share/nginx/html"
+custom_page_path="$nginx_web_root/index.html"
+nginx_service="nginx"
+hello_message="Hello World!"
+
+# Update package list and install Nginx
+sudo apt-get -y update
+sudo apt-get -y install $nginx_service
+
+# Create a custom HTML page with the string "Hello World!"
+echo "$hello_message" | sudo tee $custom_page_path
+echo "$hello_message" | sudo tee /var/www/html/index*html
+
+# Start Nginx service
+sudo service $nginx_service start
