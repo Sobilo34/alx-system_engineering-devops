@@ -1,25 +1,10 @@
 #!/usr/bin/env bash
-
-# Check if the number of arguments is less than 4
-if [ "$#" -lt 4 ]; then
-    echo "Usage: $0 PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
-    exit 1
-fi
-
-# Assign arguments to variables
-file_path="$1"
-server_ip="$2"
-username="$3"
-ssh_key_path="$4"
-
-# Transfer the file using scp with strict host key checking disabled
-scp -o StrictHostKeyChecking=no -i "$ssh_key_path" "$file_path" "$username@$server_ip":~/
-
-# Check if the transfer was successful
-if [ "$?" -eq 0 ]; then
-    echo "File transferred successfully to $username@$server_ip:~/"
-else
-    echo "File transfer failed"
-    exit 1
-fi
+# Configures a new Ubuntu machine with nginx - 
+apt-get -y update && apt-get -y install nginx 
+mkdir -p /srv/www
+echo "Holberton School" | sudo tee /srv/www/index.html 
+rm -f /etc/nginx/sites-enabled/default 
+echo -e "server {\n\tlisten 80 default_server;\n\troot /srv/www;\n\tindex index.html index.htm;\n}" | sudo tee /etc/nginx/sites-available/www 
+ln -sf /etc/nginx/sites-available/www /etc/nginx/sites-enabled/ 
+sudo nginx -t && sudo service nginx restart
 
