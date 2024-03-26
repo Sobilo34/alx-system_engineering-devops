@@ -1,21 +1,14 @@
-
 #!/usr/bin/env bash
-# Install nginx on web-01 server
-# Nginx to listen on port 80
+# Bash script that configures a new Ubuntu machine
+# it Install nginx on on server web-01
+# When querying Nginx at its root / with a GET request (requesting a page) using curl, it must return a page that contains the string Hello World!
+# can’t use systemctl for restarting nginx
 
-# Variables
-nginx_web_root="/usr/share/nginx/html"
-custom_page_path="$nginx_web_root/index.html"
-nginx_service="nginx"
-hello_message="Hello World!"
 
-# Update package list and install Nginx
-sudo apt-get -y update
-sudo apt-get -y install $nginx_service
-
-# Create a custom HTML page with the string "Hello World!"
-echo "$hello_message" | sudo tee $custom_page_path
-echo "$hello_message" | sudo tee /var/www/html/index*html
-
-# Start Nginx service
-sudo service $nginx_service start
+sudo apt-get update
+# Updated package list and install nginx
+sudo apt-get install -y nginx
+echo "Hello World!" > /var/www/html/index.html
+ufw allow 'Nginx HTTP'
+# Restart nginx (without using systemctl)
+sudo nginx -t && sudo service nginx restart
