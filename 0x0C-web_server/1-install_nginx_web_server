@@ -5,10 +5,19 @@
 # can’t use systemctl for restarting nginx
 
 
-sudo apt-get update
-# Updated package list and install nginx
-sudo apt-get install -y nginx
-echo "Hello World!" > /var/www/html/index.html
-ufw allow 'Nginx HTTP'
-# Restart nginx (without using systemctl)
-sudo service nginx restart
+# Variables
+nginx_web_root="/usr/share/nginx/html"
+custom_page_path="$nginx_web_root/index.html"
+nginx_service="nginx"
+hello_message="Hello World!"
+
+# Update package list and install Nginx
+sudo apt-get -y update
+sudo apt-get -y install $nginx_service
+
+# Create a custom HTML page with the string "Hello World!"
+echo "$hello_message" | sudo tee $custom_page_path
+echo "$hello_message" | sudo tee /var/www/html/index*html
+
+# Start Nginx service
+sudo service $nginx_service start
