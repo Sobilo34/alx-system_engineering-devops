@@ -1,37 +1,14 @@
 #!/usr/bin/env bash
-# Configures a new ubuntu machine by installing
-# Nginx where it should be listening on port 80
-# Serve a page that would return a Hello World string
-#
-# colors
-blue='\e[1;34m'
-brown='\e[0;33m'
-green='\e[1;32m'
-reset='\033[0m'
+# Bash script that configures a new Ubuntu machine
+# it Install nginx on on server web-01
+# When querying Nginx at its root / with a GET request (requesting a page) using curl, it must return a page that contains the string Hello World!
+# can’t use systemctl for restarting nginx
 
-echo -e "${blue}Updating and installing ${brown}Nginx${blue}.${reset}\n"
-sudo apt-get update -y -qq && \
-	 sudo apt-get install nginx -y
 
-echo -e "\n${blue}Setting up some minor stuff.${reset}\n"
-
-# starting nginx service
-sudo service nginx start
-
-# allowing nginx on firewall
-sudo ufw allow 'Nginx HTTP'
-
-# Give the user ownership to website files for easy editing
-sudo chown -R "$USER":"$USER" /var/www/html
-sudo chmod -R 755 /var/www
-
-# Backup default index
-cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
-
-# Creating new index
-echo -e "Hello World!" | dd status=none of=/var/www/html/index.nginx-debian.html
-
-# Restarting nginx
+sudo apt-get update
+# Updated package list and install nginx
+sudo apt-get install -y nginx
+echo "Hello World!" > /var/www/html/index.html
+ufw allow 'Nginx HTTP'
+# Restart nginx (without using systemctl)
 sudo service nginx restart
-
-echo -e "\n${green}Completed.${reset} ✅\n"
