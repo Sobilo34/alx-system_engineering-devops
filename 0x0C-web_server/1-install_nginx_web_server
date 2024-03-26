@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
-# Bash script that configures a new Ubuntu machine
-# it Install nginx on on server web-01
-# When querying Nginx at its root / with a GET request (requesting a page) using curl, it must return a page that contains the string Hello World!
-# can’t use systemctl for restarting nginx
+# installs nginx and configure it to listen on port 80
+# print "Hello World"
 
-
-sudo apt-get update
-# Updated package list and install nginx
-sudo apt-get install -y nginx
-echo "Hello World!" > /var/www/html/index.html
-ufw allow 'Nginx HTTP'
-# Restart nginx (without using systemctl)
-sudo service nginx restart
+sudo apt-get -y update
+sudo apt-get -y install nginx
+echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+sudo service nginx start
