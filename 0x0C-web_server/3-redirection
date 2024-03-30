@@ -1,23 +1,10 @@
 #!/usr/bin/env bash
 # Configures a new Ubuntu machine
 
-apt-get update
-# Updated package list and install nginx
-apt-get install -y nginx
+sudo apt -y update
+sudo apt -y install nginx
 ufw allow 'Nginx HTTP'
-# Restart nginx (without using systemctl)
-echo "Hello World!" > /var/www/html/index.html
+echo "Hello World!" | sudo tee /var/www/html/index.html
 
-origin_name="server_name\ _"
-new_name="server_name\ sobil.tech"
-
-sed -i -e s/"$origin_name"/"$new_name"/ /etc/nginx/sites-enabled/default
-
-my_loc="\tlocation /redirect_me\ {\n\
-	\t\treturn\ 301\ https:\/\/www.youtube.com\/watch\?v=QH2-TGUlwu4\n\
-	\t}"
-
-sed -i -e "/$new_name/a\\$my_loc" /etc/nginx/sites-enabled/default
-
-# sed -i 's/server_name _;/server_name _;\n\trewrite \/redirect_me https:\/\/www.youtube.com\/watch\?v=QH2-TGUlwu4 permanent;/' /etc/nginx/sites-enabled/default
+sed -i 's/server_name _;/server_name _;\n\trewrite \/redirect_me https:\/\/www.youtube.com\/watch\?v=QH2-TGUlwu4 permanent;/' /etc/nginx/sites-enabled/default
 sudo service nginx restart
