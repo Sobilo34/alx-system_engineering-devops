@@ -5,10 +5,10 @@
 # can’t use systemctl for restarting nginx
 
 
-sudo apt-get update
+apt-get update
 # Updated package list and install nginx
-sudo apt-get install -y nginx
+apt-get install -y nginx
 echo "Hello World!" > /var/www/html/index.html
-# sudo ufw allow 'Nginx HTTP'
+ufw allow 'Nginx HTTP'
 # Restart nginx (without using systemctl)
-sudo service nginx restart
+service nginx --full-restart
