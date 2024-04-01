@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Configures a new Ubuntu machine with nginx
+apt-get -y update && apt-get -y install nginx
+mkdir -p /srv/www
+echo "Holberton School" | sudo tee /srv/www/index.html
+rm -f /etc/nginx/sites-enabled/default
+
+# Write Nginx configuration
+echo -e "
+server {
+    listen 80 default_server;
+    root /srv/www;
+    index index.html index.htm;
+    add_header X-Served-By \$host;  # Use $host instead of $hostname
+
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+}
+" | sudo tee /etc/nginx/sites-available/www
+
+# Enable the configuration
+ln -sf /etc/nginx/sites-available/www /etc/nginx/sites-enabled/
+sudo nginx -t && sudo service nginx restart
