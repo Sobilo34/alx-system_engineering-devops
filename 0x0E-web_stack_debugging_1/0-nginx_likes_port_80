@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# A Bash script to fix a bug for this error:
+# curl: (7) Failed to connect to 0 port 80: Connection refused
+
+sudo rm /etc/nginx/sites-enabled/default
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+sudo service nginx restart
