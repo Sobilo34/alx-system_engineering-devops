@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# A Bah script that kills a process by making nginx seem like its not running
+
+sudo ln -fs /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+sudo service nginx restart
+sudo rm /run/nginx.pid
