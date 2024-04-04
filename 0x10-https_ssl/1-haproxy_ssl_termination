@@ -37,10 +37,10 @@ frontend  sobil-frontend-http
         bind *:80
         mode http
 	http-request set-header X-Forwarded-Proto http
-        default_backend hunterxcobby-backend
+        default_backend sobil-backend
 
 frontend sobil-frontend-https
-	bind *:443 ssl crt /etc/haproxy/certs/www.hunterxcobby.tech.pem
+	bind *:443 ssl crt /etc/haproxy/certs/www.sobil.tech.pem
 	http-request set-header X-Forwarded-Proto https
 	default_backend sobil-backend
 
