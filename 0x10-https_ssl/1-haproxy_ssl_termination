@@ -33,18 +33,18 @@ defaults
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
 
-frontend  hunterxcobby-frontend-http
+frontend  sobil-frontend-http
         bind *:80
         mode http
 	http-request set-header X-Forwarded-Proto http
         default_backend hunterxcobby-backend
 
-frontend hunterxcobby-frontend-https
+frontend sobil-frontend-https
 	bind *:443 ssl crt /etc/haproxy/certs/www.hunterxcobby.tech.pem
 	http-request set-header X-Forwarded-Proto https
-	default_backend hunterxcobby-backend
+	default_backend sobil-backend
 
-backend hunterxcobby-backend
+backend sobil-backend
         balance roundrobin
-        server 63210-web-01 100.25.19.204:80 check
-        server 63210-web-02 54.157.159.85:80 check
+        server 428425-web-01 107.23.86.238 check
+        server 428425-web-02 54.89.35.94 check
