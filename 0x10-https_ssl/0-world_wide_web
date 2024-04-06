@@ -1,27 +1,26 @@
 #!/usr/bin/env bash
+
 # Displays information about subdomains
 proc () {
-	if [ "$#" -eq 1 ]
-	then
-		for i in "www" "lb-01" "web-01" "web-02"
-		do
-			string=$(dig +noall +answer "$i.$1")
-			record=$(echo "$string"| awk '{ print $4 }')
-			destination=$(echo "$string"| awk '{ print $5 }')
-			echo "The subdomain $i is a $record record and points to $destination"
-		done
-		return 0
-	fi
-	for var in "$@"
-	do
-		if [ "$1" != "$var" ]
-		then
-			string=$(dig +noall +answer "$var.$1")
-			record=$(echo "$string"| awk '{ print $4 }')
-			destination=$(echo "$string"| awk '{ print $5 }')
-			echo "The subdomain $var is a $record record and points to $destination"
-		fi
-	done
-	return 0
+    if [ "$#" -eq 1 ]; then
+        for i in "www" "lb-01" "web-01" "web-02"; do
+            string=$(dig +noall +answer "$i.$1")
+            record=$(echo "$string" | awk '{ print $4 }')
+            destination=$(echo "$string" | awk '{ print $5 }')
+            echo "The subdomain $i is a $record record and points to $destination"
+        done
+        return 0
+    fi
+
+    for var in "$@"; do
+        if [ "$2" == "$var" ]; then
+            string=$(dig +noall +answer "$var.$1")
+            record=$(echo "$string" | awk '{ print $4 }')
+            destination=$(echo "$string" | awk '{ print $5 }')
+            echo "The subdomain $var is a $record record and points to $destination"
+        fi
+    done
+    return 0
 }
+
 proc "$@"
