@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Displays information about subdomains
+# This is to displays information about subdomains
 proc () {
 	if [ "$#" -eq 1 ]
 	then
