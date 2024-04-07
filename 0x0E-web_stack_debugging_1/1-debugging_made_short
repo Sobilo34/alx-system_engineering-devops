@@ -1,6 +1,5 @@
-#!/usr/bin/env bash
-# A Bah script that kills a process by making nginx seem like its not running
-
-sudo ln -fs /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+#!/usr/bin/env bash 
+# A bash script thst sets nginx server to listen on port 80, reload the server and kill running processess
+sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
 sudo service nginx restart
-sudo rm /run/nginx.pid
+kill -9 "$(cat /var/run/nginx.pid)"
