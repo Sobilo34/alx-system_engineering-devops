@@ -10,7 +10,7 @@ server_config=\
 frontend  sobil-frontend
         bind *:80
         mode http
-        default_backend cobby-backend
+        default_backend sobil-backend
 backend sobil-backend
         balance roundrobin
         server 434802-web-01 100.27.4.8:80 check
