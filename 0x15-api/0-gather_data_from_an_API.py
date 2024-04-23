@@ -10,37 +10,37 @@ import requests
 import sys
 
 
-def get_employee_todo_progress(employee_id):
+def display_progress():
     """
-    Fetches and displays TODO list progress
+    Displaying TODO list progress
     """
-    base_url = "https://jsonplaceholder.typicode.com"
-    user_url = "{}/users/{}".format(base_url, employee_id)
-    todos_url = "{}/todos?userId={}".format(base_url, employee_id)
 
-    user_response = requests.get(user_url)
-    user_data = user_response.json()
-    employee_name = user_data.get('name')
+    users = requests.get("http://jsonplaceholder.typicode.com/users")
 
-    todos_response = requests.get(todos_url)
-    todos_data = todos_response.json()
+    for user in users.json():
+        if user.get('id') == int(argv[1]):
+            employee_name = (user.get('name'))
+            break
 
-    total_tasks = len(todos_data)
-    completed_tasks = sum(task.get("completed", False) for task in todos_data)
+    total_tasks = 0
+    done_tasks = 0
+    todo_data = []
 
-    print("Employee {} is done with tasks ({}/{}):".format(
-        employee_name, completed_tasks, total_tasks), end='\n')
+    todos = requests.get("http://jsonplaceholder.typicode.com/todos")
 
-    for task in todos_data:
-        if task.get('completed', False):
-            print("\t {}".format(task.get("title")))
+    for todo in todos.json():
+        if todo.get('userId') == int(argv[1]):
+            total_tasks += 1
+            if todo.get('completed') is True:
+                done_tasks += 1
+                todo_data.append(todo.get('title'))
+
+    print("Employee {} is done with tasks({}/{}):"
+          .format(employee_name, done_tasks, total_tasks))
+
+    for task in todo_data:
+        print("\t {}".format(task))
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python3 0-gather_data_from_an_API.py <employee_id>")
-        sys.exit(1)
-
-    employee_id = int(sys.argv[1])
-
-    get_employee_todo_progress(employee_id)
+    display_progress()
