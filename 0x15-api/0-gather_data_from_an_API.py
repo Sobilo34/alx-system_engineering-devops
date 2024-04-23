@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-Returns information about given employee ID TODO list progress
-Using this REST API
+A python script that returns information about given employee
+ID TODO list progress Using this REST API
 """
 
 import requests
@@ -24,14 +24,8 @@ def display_progress():
     done_tasks = 0
     todo_data = []
 
-    """
-    Fetching data from the REST API
-    """
     todos = requests.get("http://jsonplaceholder.typicode.com/todos")
 
-    """
-    Calculating TODO list progress
-    """
     for todo in todos.json():
         if todo.get('userId') == int(argv[1]):
             total_tasks += 1
@@ -39,9 +33,6 @@ def display_progress():
                 done_tasks += 1
                 todo_data.append(todo.get('title'))
 
-    """
-    Displaying TODO list progress
-    """
     print("Employee {} is done with tasks({}/{}):"
           .format(employee_name, done_tasks, total_tasks))
 
