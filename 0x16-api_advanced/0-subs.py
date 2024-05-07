@@ -8,7 +8,12 @@ import requests
 
 def number_of_subscribers(subreddit):
     """
-    function that calculate the subscribers
+    Parameters:
+    subreddit (str): The subreddit to query.
+
+    Returns:
+        int: Number of subscribers for given subreddit
+        or 0 if subreddit is invalid.
     """
     url = "https://www.reddit.com/r/{}/about.json"
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
