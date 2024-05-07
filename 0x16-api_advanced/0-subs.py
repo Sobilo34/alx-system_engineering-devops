@@ -7,6 +7,9 @@ import requests
 
 
 def number_of_subscribers(subreddit):
+    """
+    function that calculate the subscribers
+    """
     url = "https://www.reddit.com/r/{}/about.json"
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
 
