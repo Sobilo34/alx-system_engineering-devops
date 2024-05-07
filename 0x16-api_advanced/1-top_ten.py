@@ -11,7 +11,7 @@ def top_ten(subreddit):
     """
     The function to execute the purpose
     """
-    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
+    url = f"https://www.reddit.com/r/{}/hot/.json".format(subreddit)
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
     params = {"limit": 10}
 
